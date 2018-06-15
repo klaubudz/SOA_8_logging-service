@@ -44,5 +44,17 @@ namespace LoggingService.Controllers
                 log.Date = DateTime.Now;
             }
         }
+
+        public IActionResult Delete([FromODataUri] int key)
+        {
+            var entity = _context.Logs.Find(key);
+            if (entity == null)
+            {
+                return BadRequest();
+            }
+            _context.Logs.Remove(entity);
+            _context.SaveChanges();
+            return Ok();
+        }
     }
 }
