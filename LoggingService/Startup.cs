@@ -26,8 +26,11 @@ namespace LoggingService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<LogContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),b => b.MigrationsAssembly("LoggingService")));
+            var connectionString = Configuration.GetConnectionString("PostgresConnection");
+            services.AddEntityFrameworkNpgsql().AddDbContext<LogContext>(options => options.UseNpgsql(connectionString));
+
+            //services.AddDbContext<LogContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),b => b.MigrationsAssembly("LoggingService")));
 
             services.AddOData();
             services.AddTransient<LogsModelBuilder>();
