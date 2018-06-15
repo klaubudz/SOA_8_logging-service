@@ -27,7 +27,7 @@ namespace LoggingService
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("PostgresConnection");
-            services.AddEntityFrameworkNpgsql().AddDbContext<LogContext>(options => options.UseNpgsql(connectionString));
+            services.AddEntityFrameworkNpgsql().AddDbContext<LogContext>(options => options.UseNpgsql(connectionString,b => b.MigrationsAssembly("LoggingService")));
 
             //services.AddDbContext<LogContext>(options =>
             //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),b => b.MigrationsAssembly("LoggingService")));
