@@ -12,10 +12,5 @@ namespace LogDB
         }
 
         public DbSet<Log> Logs { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ForNpgsqlUseSerialColumns();
-        }
     }
 }
