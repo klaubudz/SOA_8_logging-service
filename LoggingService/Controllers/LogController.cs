@@ -39,7 +39,7 @@ namespace LoggingService.Controllers
 
         private void SetCurrentDateIfNull(Log log)
         {
-            if(log.Date == null)
+            if(log.Date == null || log.Date.Ticks == 0)
             {
                 log.Date = DateTime.Now;
             }
